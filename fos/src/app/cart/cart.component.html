@@ -1,0 +1,29 @@
+<div class="container" style="margin-bottom: 125px;">
+    <div>
+      <button class="btn btn-primary my-4 ml-5" (click)="placeOrder();"> Place Order</button>
+    </div>
+    <div class="">
+      <table class="table">
+         <thead>
+           <tr>
+             <th scope="col">Sr No.</th>
+             <th scope="col">Dish</th>
+             <th scope="col">Quantity</th>
+             <th scope="col">Price</th>
+             <th scope="col"></th>
+           </tr>
+         </thead>
+         <tbody >
+           <tr *ngFor="let cart of customerCart; index as i">
+             <td>{{i+1}}</td>
+             <td>{{cart.item_id.item_name}}</td>
+             <td><button  class="btn btn-outline-success btn-sm mr-2" (click)="minusQuantity(cart._id,cart.item_quantity)"><i class="fa fa-minus"  aria-hidden="true"></i></button> {{cart.item_quantity}}<button class="btn btn-sm  btn-outline-danger ml-2" (click)="plusQuantity(cart._id, cart.item_quantity)"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
+             <td>{{cart.item_id.item_price * cart.item_quantity}}</td>
+             <td><button class="btn btn-outline-danger btn-sm" (click)="removeItemFromCart(cart._id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+             <!-- <div class="hidden" >{{this.total = this.total + cart.item_id.item_price}}</div> -->
+           </tr>
+         </tbody>
+       </table>
+  
+     </div> 
+  </div>

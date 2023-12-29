@@ -1,0 +1,21 @@
+<table class="table table-hover table-responsive-sm text-center">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>Email Id</th>
+        <th>Feedback</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feed of feedbacks;index as i;">
+        <td>{{i+1}}</td>
+        <td>{{feed.name}}</td>
+        <td>{{feed.email_id}}</td>
+        <td>{{feed.feedback}}</td>
+        <td><button class="btn btn-outline-danger" (click)="deleteFeedback(feed._id)">delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  

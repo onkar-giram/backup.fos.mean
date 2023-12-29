@@ -1,0 +1,23 @@
+<div class="container" style="margin-bottom: 125px;">
+    <div class="">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col">Sr No.</th>
+            <th scope="col">Table No.</th>
+            <th scope="col">View</th>
+            <th scope="col">Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let table of tables ;index as i;">
+            <td scope="row">{{i+1}}</td>
+            <td scope="row">{{table}}</td>
+            <td scope="row"><a (click)="navigateToViewCompletedOrder(table)" class="text-blue">view</a></td>
+            <td scope="row"><button class="btn btn-outline-secondary">Completed</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

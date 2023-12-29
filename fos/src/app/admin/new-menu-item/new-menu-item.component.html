@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-5 mt-4">
+
+            <form #newMenuItemForm="ngForm" (ngSubmit)="insertMenuItem(newMenuItemForm.value)">
+
+                <div class="mb-4 lead text-center" *ngIf=(message)><h5>New Item Inserted successfully</h5></div>
+
+                <div class="form-group">
+                    <label for="item_name">Dish Name </label>
+                    <input required type="text" class="form-control" ngModel name="item_name" #item_name="ngModel"
+                        id="item_name">
+                    <div class="alert alert-danger" *ngIf="item_name.touched && !item_name.valid">
+                        <div *ngIf="item_name.errors.required"> Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="item_price">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">₹</span></div>
+                        <input required type="number" id="item_price" #item_price="ngModel" name="item_price" ngModel
+                            class="form-control">
+                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="item_price.touched && !item_price.valid">
+                        <div *ngIf="item_price.errors.required"> Price is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="item_type">Category</label>
+                    <select id="item_type" required name="item_type" class="form-control" id="item_type"
+                        #item_type="ngModel" ngModel>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Main Course">Main Course</option>
+                        <option value="Indian Brat">Indian Brat</option>
+                        <option value="Salad">Salad</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="item_type.touched && !item_type.valid">
+                        <div *ngIf="item_type.errors.required"> Type is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="item_url">Image URL</label>
+                    <input id="item_url" type="text" ngModel name="item_url" id="item_url" class="form-control"
+                        #item_url="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="item_url.touched && !item_url.valid">
+                        <div *ngIf="item_url.errors.required"> URL is required</div>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!newMenuItemForm.valid"> Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="mt-4 ml-4 display-4">Preview</h4>
+            <div class="col mx-auto">
+                <!--col-xs-6 col-sm-6 col-md-4-->
+                <div class="card mb-4" style="width: 13rem;">
+                    <img *ngIf="item_url.value" class="card-img-top" height="160" src={{item_url.value}}>
+                    <div class="card-body">
+                        <h4 class="card-title">{{item_name.value}}</h4>
+                        <p class="card-text"> {{item_price.value}} ₹</p>
+                        <a class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-5 mt-4">
+            <form class="mt-4 mb-5" data-toggle="navigator" role="form" (ngSubmit)="insertMenuItem()" >
+                <div class="mb-4 lead text-center" *ngIf=(message)><h5>New Item Inserted successfully</h5></div>
+                <div class="form-group">
+                    <label for="item_name">Dish Name</label>
+                    <input id="item_name" [(ngModel)]="menu.item_name"  name="item_name"type="text" class="form-control" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="item_price">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">₹</span></div>
+                        <input id="item_price" [(ngModel)]="menu.item_price" name="item_price" type="number" class="form-control" required="required">
+                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image_type">Category</label>
+                    <select id="image_type" name="image_type" [(ngModel)]="menu.item_type"   class="form-control">
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Main Course">Main Course</option>
+                        <option value="Indian Brat">Indian Brat</option>
+                        <option value="Salad">Salad</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>    
+                </div>
+                <div class="form-group">
+                    <label for="image_url">Image URL</label>
+                    <input id="image_url" [(ngModel)]="menu.item_url" name="image_url" type="text" class="form-control" required="required">
+                </div>
+                <button class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4 class="mt-4 ml-4 display-4">Preview</h4>
+            <div class="col mx-auto"> <!--col-xs-6 col-sm-6 col-md-4-->
+<!--    <div class="card mb-4" style="width: 13rem;">
+                    <img *ngIf=(menu.item_url) class="card-img-top" height="160" src={{menu.item_url}} >
+                    <div class="card-body">
+                        <h4 class="card-title">{{menu.item_name}}</h4>
+                        <p class="card-text">  {{menu.item_price}}   ₹</p>
+                        <a href="" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

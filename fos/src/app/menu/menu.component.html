@@ -1,0 +1,27 @@
+    <div class="scrollmenu text-center my-3">
+        <a (click)="fetchMenuByType('Breakfast')" class="btn btn-outline-secondary btn-sm mx-1">Breakfast</a>
+        <a (click)="fetchMenuByType('Main Course')" class="btn btn-outline-secondary btn-sm mx-1">Main Cource</a>
+        <a (click)="fetchMenuByType('Indian Brat')" class="btn btn-outline-secondary btn-sm mx-1">Indian Brat</a>
+        <a (click)="fetchMenuByType('Salad')" class="btn btn-outline-secondary btn-sm mx-1">Salad</a>
+        <a (click)="fetchMenuByType('Rice')" class="btn btn-outline-secondary btn-sm mx-1">Rice</a>
+        <a (click)="fetchMenuByType('Drinks')" class="btn btn-outline-secondary btn-sm mx-1">Drinks</a>
+    </div>
+    
+    <div class="container">
+    <!-- <div *ngIf="!table_no" class="alert alert-danger">
+        Table number not found, Plz scan the QR code again.
+    </div> -->
+    
+    <div class="row">
+        <div *ngFor="let menuItem of menu"> <!-- col-xs-6 col-sm-6 col-md-4-->
+            <div class="card mb-4 mx-1" style="width: 9.5rem;">
+                <img class="card-img-top" height="140" src={{menuItem.item_url}}>
+                <div class="card-body">
+                    <h4 class="card-title">{{menuItem.item_name}}</h4>
+                    <p class="card-text">{{menuItem.item_price}}     ₹</p>
+                    <a class="btn btn-sm py-2 px-2 btn-primary btn-block"(click)=orderItem(menuItem._id)>Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
